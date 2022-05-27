@@ -1,6 +1,6 @@
 <?php
 
-class post
+class Post
 {
     public $display_name;
     public $message;
@@ -19,7 +19,12 @@ class post
         $ret = "<div class='post'><span class='name'>{$this->display_name}</span>";
         $ret .= "<span class='message'>{$this->message}</span>";
         $ret .= "<span class='time'>{$this->date_time}</span></div>";
+
+        return $ret;
     }
 }
+
+$p = new Post("Kehvar", "Test Message");
+echo $p->render();
 
 ?>
