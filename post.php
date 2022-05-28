@@ -23,8 +23,3 @@ class Post
         return $ret;
     }
 }
-
-$p = new Post("Kehvar", "Test Message");
-echo $p->render();
-
-?>
