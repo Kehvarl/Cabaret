@@ -1,0 +1,22 @@
+.header{
+
+}
+
+.posts{
+    background-color: #000000;
+}
+
+.post{
+    color: #c0c0c0;
+}
+
+.post .name{
+    font-weight: bold;
+    width: 20%;
+}
+.post .message{
+}
+.post .time{
+    font-size: .74em;
+
+}

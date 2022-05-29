@@ -16,21 +16,14 @@ class Room
 
     public function render()
     {
-        $ret = "<div class='header'>$this->name</div>";
-        $ret .= "<div class='posts'>";
+        $ret = "<div class='header'>$this->name</div>\n";
+        $ret .= "<div class='posts'>\n";
         foreach ($this->posts as $p)
         {
-            $ret .= $p->render();
+            $ret .= "\t".$p->render();
         }
         $ret .= "</div>";
 
         return $ret;
     }
 }
-
-$r = new Room("Main", "Room");
-$r->posts[] = new Post("Kehvarl", "First Post.");
-$r->posts[] = new Post("Kehvarl", "Second Post.");
-$r->posts[] = new Post("Kehvarl", "Third Post.");
-
-echo $r->render();
