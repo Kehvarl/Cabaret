@@ -16,7 +16,7 @@ class Room
 
     public function render()
     {
-        $ret = "<div class='header'>{$this->name}</div>";
+        $ret = "<div class='header'>$this->name</div>";
         $ret .= "<div class='posts'>";
         foreach ($this->posts as $p)
         {
