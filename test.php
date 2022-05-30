@@ -5,9 +5,9 @@
     echo "</head><body>\n";
 
     $r = new Room("Main", "Room");
-    $r->posts[] = new Post("Kehvarl", "First Post.");
-    $r->posts[] = new Post("Kehvarl", "Second Post.");
-    $r->posts[] = new Post("Kehvarl", "Third Post.");
+    $r->posts[] = new Post("Kehvarl", "First Post.", "#c0c0c0");
+    $r->posts[] = new Post("Kehvarl", "Second Post.", "#000080");
+    $r->posts[] = new Post("Kehvarl", "Third Post.", "#000000");
 
     echo $r->render();
 

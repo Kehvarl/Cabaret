@@ -1,9 +1,13 @@
+body{
+    background-color: #ffe4c4;
+}
+
 .header{
 
 }
 
 .posts{
-    background-color: #000000;
+    background-color: #ffe4c4;
 }
 
 .post{
