@@ -29,6 +29,7 @@ class Post implements JsonSerializable
         return [
             'display_name' => $this->display_name,
             'message' => $this->message,
+            'color' => $this->color,
             'date_time' => $this->date_time
         ];
     }

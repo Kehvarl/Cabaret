@@ -15,12 +15,42 @@
   <link type="text/plain" rel="author" href="/humans.txt" />
 
   <meta name="theme-color" content="#fafafa">
+
+  <link rel='stylesheet' href='style/style.css' type='text/css'/>
+
+  <script>
+    function get_posts()
+    {
+      fetch('api.php/load')
+              .then(res => res.json())
+              .then((out) => {
+                render_posts(out);
+              }).catch(err => console.error(err));
+
+      setTimeout(function(){get_posts()}, 2.0*1000);
+    }
+
+    function render_posts(room_data)
+    {
+      //document.getElementById("posts").innerHTML = "";
+      room_data['posts'].forEach((p)=>
+      {
+        $ret = "<div class='post' style='color: "+p['color']+"'>";
+        $ret += "<span class='name'>"+p['display_name']+"</span> ";
+        $ret += "<span class='message'>"+p['message']+"</span> ";
+        $ret += "<span class='time'>"+p['date_time']+"</span></div>";
+        document.getElementById("posts").innerHTML += $ret;
+      });
+    }
+
+    get_posts();
+  </script>
 </head>
 
 <body>
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
+  <div id="posts" class="posts">
+  </div>
 
 
 </body>
