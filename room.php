@@ -1,7 +1,7 @@
 <?php
 require_once ("post.php");
 
-class Room
+class Room implements JsonSerializable
 {
     public $name;
     public $description;
@@ -25,5 +25,14 @@ class Room
         $ret .= "</div>";
 
         return $ret;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'name'=> $this->name,
+            'description'=> $this->description,
+            'posts'=> $this->posts
+        ];
     }
 }
