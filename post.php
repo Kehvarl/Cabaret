@@ -1,6 +1,6 @@
 <?php
 
-class Post
+class Post implements JsonSerializable
 {
     public $display_name;
     public $message;
@@ -22,5 +22,14 @@ class Post
         $ret .= "<span class='time'>$this->date_time</span></div>\n";
 
         return $ret;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'display_name' => $this->display_name,
+            'message' => $this->message,
+            'date_time' => $this->date_time
+        ];
     }
 }
