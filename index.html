@@ -30,6 +30,29 @@
       setTimeout(function(){get_posts()}, 2.0*1000);
     }
 
+    async function post_message(post)
+    {
+      const response = await fetch('api.php/post', {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer',
+        body: JSON.stringify(post)
+              });
+      return response.json();
+    }
+
+    function doPost()
+    {
+      post_message({name: 'Kehvarl', message: 'Posted Message', color: '#c0c0c0'})
+              .then(data => {console.log(data);});
+    }
+
     function render_posts(room_data)
     {
       //document.getElementById("posts").innerHTML = "";
@@ -52,6 +75,9 @@
   <div id="posts" class="posts">
   </div>
 
+  <form>
+    <button onclick="doPost()" value="Post">Post</button>
+  </form>
 
 </body>
 

@@ -2,21 +2,39 @@
 require_once ("post.php");
 require_once ("room.php");
 
+session_start();
+
+if (!isset($_SESSION['room'])) {
+    $_SESSION['room'] = new Room("Main", "The Mane plane");
+    $_SESSION['room']->posts[] = new Post("Kehvarl", "First Post.", "#c0c0c0");
+    $_SESSION['room']->posts[] = new Post("Kehvarl", "Second Post.", "#000080");
+    $_SESSION['room']->posts[] = new Post("Kehvarl", "Third Post.", "#000000");
+}
+
 function get_posts()
 {
+        return json_encode($_SESSION['room'], JSON_PRETTY_PRINT);
+}
 
+function post()
+{
+    $name = "err";
+    $message = "err";
+    $color = "#800000";
+    if (isset($_POST['name']))
+        $name = $_POST['name'];
+    if (isset($_POST['message']))
+        $message = $_POST['message'];
+    if (isset($_POST['color']))
+        $color = $_POST['color'];
+    $_SESSION['room']->posts[] = new Post($name, $message, $color);
 
-    $r = new Room("Main", "Room");
-    $r->posts[] = new Post("Kehvarl", "First Post.", "#c0c0c0");
-    $r->posts[] = new Post("Kehvarl", "Second Post.", "#000080");
-    $r->posts[] = new Post("Kehvarl", "Third Post.", "#000000");
-
-    return json_encode($r, JSON_PRETTY_PRINT);
+    return true;
 }
 
 $routes = array(
-    '/load'      => get_posts(),
-    '/hello' => 'Hello, World!',
+    '/load'     => get_posts(),
+    '/post'     => post(),
     '/users' => 'Users!'
 );
 
