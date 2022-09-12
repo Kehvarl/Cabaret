@@ -11,6 +11,11 @@ if (!isset($_SESSION['room'])) {
     $_SESSION['room']->posts[] = new Post("Kehvarl", "Third Post.", "#000000");
 }
 
+function clear()
+{
+    unset($_SESSION['room']);
+}
+
 function get_posts()
 {
         return json_encode($_SESSION['room'], JSON_PRETTY_PRINT);
@@ -18,24 +23,26 @@ function get_posts()
 
 function post()
 {
+    $post = json_decode(file_get_contents('php://input'), true);
     $name = "err";
     $message = "err";
     $color = "#800000";
-    if (isset($_POST['name']))
-        $name = $_POST['name'];
-    if (isset($_POST['message']))
-        $message = $_POST['message'];
-    if (isset($_POST['color']))
-        $color = $_POST['color'];
+    if (isset($post['name']))
+        $name = $post['name'];
+    if (isset($post['message']))
+        $message = $post['message'];
+    if (isset($post['color']))
+        $color = $post['color'];
     $_SESSION['room']->posts[] = new Post($name, $message, $color);
 
     return true;
 }
 
 $routes = array(
-    '/load'     => get_posts(),
-    '/post'     => post(),
-    '/users' => 'Users!'
+    '/load'     => 'get_posts',
+    '/post'     => 'post',
+    '/reset'    => 'clear',
+    '/users'    => 'Users!'
 );
 
 // This is our router.
@@ -45,7 +52,7 @@ function router($routes)
     foreach ($routes as $path => $content) {
         if ($path == $_SERVER['PATH_INFO']) {
             // If the path matches, display its contents and stop the router.
-            echo $content;
+            echo $content();
             return;
         }
     }

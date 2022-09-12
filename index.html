@@ -47,15 +47,38 @@
       return response.json();
     }
 
+    async function clear()
+    {
+      const response = await fetch('api.php/reset', {
+        method: 'POST',
+        mode: 'cors',
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        redirect: 'follow',
+        referrerPolicy: 'no-referrer'
+      });
+      return response.json();
+    }
+
+    function doClear() {
+      clear().then(data => {console.log(data);});
+    }
+
     function doPost()
     {
-      post_message({name: 'Kehvarl', message: 'Posted Message', color: '#c0c0c0'})
+      var message = document.getElementById("Message").value;
+      document.getElementById("Message").value = "";
+      post_message({name: 'Kehvarl', message: message, color: '#c0c0c0'})
               .then(data => {console.log(data);});
+      get_posts();
     }
 
     function render_posts(room_data)
     {
-      //document.getElementById("posts").innerHTML = "";
+      document.getElementById("posts").innerHTML = "";
       room_data['posts'].forEach((p)=>
       {
         $ret = "<div class='post' style='color: "+p['color']+"'>";
@@ -65,7 +88,6 @@
         document.getElementById("posts").innerHTML += $ret;
       });
     }
-
     get_posts();
   </script>
 </head>
@@ -75,10 +97,20 @@
   <div id="posts" class="posts">
   </div>
 
-  <form>
-    <button onclick="doPost()" value="Post">Post</button>
-  </form>
+  <div>
+    <label for="Message">Message:</label><input type="text" id="Message"/>
+    <button id="Post" onclick="doPost();" value="Post">Post</button>
+    <button onclick="doClear();" value="Clear">Clear</button>
+  </div>
 
 </body>
-
+<script>
+  document.getElementById("Message")
+          .addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              document.getElementById("Post").click();
+            }
+          });
+</script>
 </html>
