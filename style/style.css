@@ -1,5 +1,5 @@
 body{
-    background-color: #404040;
+    background-color: #282828;
 }
 
 .header{
@@ -7,7 +7,7 @@ body{
 }
 
 .posts{
-    background-color: #404040;
+    background-color: #484848;
     top: 0;
     left: 0;
     height: 20em;
