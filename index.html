@@ -70,8 +70,9 @@
     function doPost()
     {
       var message = document.getElementById("Message").value;
+      var color = document.getElementById("Color").value;
       document.getElementById("Message").value = "";
-      post_message({name: 'Kehvarl', message: message, color: '#c0c0c0'})
+      post_message({name: 'Kehvarl', message: message, color: color})
               .then(data => {console.log(data);});
       get_posts();
     }
@@ -98,6 +99,8 @@
   </div>
 
   <div>
+    <label for="Color"></label>
+    <input type="color" id="Color" name="Color" value="#000080">
     <label for="Message">Message:</label><input type="text" id="Message"/>
     <button id="Post" onclick="doPost();" value="Post">Post</button>
     <button onclick="doClear();" value="Clear">Clear</button>
