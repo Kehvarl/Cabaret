@@ -1,4 +1,5 @@
 <!doctype html>
+<!--suppress ALL -->
 <html class="no-js" lang="">
 
 <head>
@@ -71,8 +72,9 @@
     {
       var message = document.getElementById("Message").value;
       var color = document.getElementById("Color").value;
+      var font = document.getElementById("Font").value;
       document.getElementById("Message").value = "";
-      post_message({name: 'Kehvarl', message: message, color: color})
+      post_message({name: 'Kehvarl', message: message, color: color, font:font})
               .then(data => {console.log(data);});
       get_posts();
     }
@@ -82,11 +84,17 @@
       document.getElementById("posts").innerHTML = "";
       room_data['posts'].forEach((p)=>
       {
-        $ret = "<div class='post' style='color: "+p['color']+"'>";
+        $ret = "<div class='post' style='color: "+p['color']+";";
+        if(p['font'])
+        {
+          $ret += "font-family: "+p['font']+";";
+        }
+        $ret += "'>";
         $ret += "<span class='name'>"+p['display_name']+"</span> ";
         $ret += "<span class='message'>"+p['message']+"</span> ";
         $ret += "<span class='time'>"+p['date_time']+"</span></div>";
         document.getElementById("posts").innerHTML += $ret;
+        document.getElementById("posts").scrollTop = document.getElementById("posts").scrollHeight;
       });
     }
     get_posts();
@@ -98,14 +106,29 @@
   <div id="posts" class="posts">
   </div>
 
-  <div>
-    <!--suppress HtmlFormInputWithoutLabel -->
-    <input type="text" id="Message" placeholder="Message"/>
-    <button id="Post" onclick="doPost();" value="Post">Post</button>
-    <!--suppress HtmlFormInputWithoutLabel -->
+  <div style="height:5em; width: 100%;">
     <input type="color" id="Color" name="Color" value="#00ccdd">
-    <br><br>
-    <button onclick="doClear();" value="Clear">Clear</button>
+    <select id="Font">
+      <optgroup>
+        <option>Default</option>
+      </optgroup>
+      <optgroup style="font-family:arial">
+        <option>Arial</option>
+      </optgroup>
+      <optgroup style="font-family:verdana">
+        <option>veranda</option>
+      </optgroup>
+      <optgroup style="font-family:'Comic Sans MS'">
+        <option>Comic Sans MS</option>
+      </optgroup>
+    </select>
+      <br>
+    <textarea id="Message" placeholder="Message" rows="3" style="width:100%"></textarea>
+    <button id="Post" onclick="doPost();" value="Post">Post</button>
+
+  </div>
+  <div>
+
   </div>
 
 </body>
