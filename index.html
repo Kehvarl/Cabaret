@@ -99,10 +99,11 @@
   </div>
 
   <div>
-    <label for="Message">Message:</label><input type="text" id="Message"/>
+    <!--suppress HtmlFormInputWithoutLabel -->
+    <input type="text" id="Message" placeholder="Message"/>
     <button id="Post" onclick="doPost();" value="Post">Post</button>
-    <label for="Color"></label>
-    <input type="color" id="Color" name="Color" value="#000080">
+    <!--suppress HtmlFormInputWithoutLabel -->
+    <input type="color" id="Color" name="Color" value="#00ccdd">
     <br><br>
     <button onclick="doClear();" value="Clear">Clear</button>
   </div>
