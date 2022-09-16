@@ -70,11 +70,12 @@
 
     function doPost()
     {
+      var name = document.getElementById("Name").value;
       var message = document.getElementById("Message").value;
       var color = document.getElementById("Color").value;
       var font = document.getElementById("Font").value;
       document.getElementById("Message").value = "";
-      post_message({name: 'Kehvarl', message: message, color: color, font:font})
+      post_message({name: name, message: message, color: color, font:font})
               .then(data => {console.log(data);});
       get_posts();
     }
@@ -122,7 +123,8 @@
         <option>Comic Sans MS</option>
       </optgroup>
     </select>
-      <br>
+    <input id="Name" type="text" placeholder="Name"/>
+    <br>
     <textarea id="Message" placeholder="Message" rows="3" style="width:100%"></textarea>
     <button id="Post" onclick="doPost();" value="Post">Post</button>
 
