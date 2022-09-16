@@ -27,13 +27,16 @@ function post()
     $name = "err";
     $message = "err";
     $color = "#800000";
+    $font =  null;
     if (isset($post['name']))
         $name = $post['name'];
     if (isset($post['message']))
         $message = $post['message'];
     if (isset($post['color']))
         $color = $post['color'];
-    $_SESSION['room']->posts[] = new Post($name, $message, $color);
+    if (isset($post['font']) && $post['font'] != "Default")
+        $font = $post['font'];
+    $_SESSION['room']->posts[] = new Post($name, $message, $color, $font);
 
     return true;
 }
