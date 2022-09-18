@@ -2,6 +2,7 @@
 
 class Post implements JsonSerializable
 {
+    public $id;
     public $display_name;
     public $message;
     public $color;
@@ -32,6 +33,7 @@ class Post implements JsonSerializable
     public function jsonSerialize()
     {
         return [
+            'post_id' => $this->id,
             'display_name' => $this->display_name,
             'message' => $this->message,
             'color' => $this->color,

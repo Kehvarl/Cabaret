@@ -36,7 +36,7 @@ function post()
         $color = $post['color'];
     if (isset($post['font']) && $post['font'] != "Default")
         $font = $post['font'];
-    $_SESSION['room']->posts[] = new Post($name, $message, $color, $font);
+    $_SESSION['room']->addpost(new Post($name, $message, $color, $font));
 
     return true;
 }
