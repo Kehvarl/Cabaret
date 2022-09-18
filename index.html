@@ -82,7 +82,9 @@
 
     function render_posts(room_data)
     {
-      document.getElementById("posts").innerHTML = "";
+      var obj = document.getElementById("posts");
+      var scrolldown =  obj.scrollTop === (obj.scrollHeight - obj.offsetHeight);
+      obj.innerHTML = "";
       room_data['posts'].forEach((p)=>
       {
         $ret = "<div class='post' style='color: "+p['color']+";";
@@ -94,8 +96,9 @@
         $ret += "<span class='name'>"+p['display_name']+"</span> ";
         $ret += "<span class='message'>"+p['message']+"</span> ";
         $ret += "<span class='time'>"+p['date_time']+"</span></div>";
-        document.getElementById("posts").innerHTML += $ret;
-        document.getElementById("posts").scrollTop = document.getElementById("posts").scrollHeight;
+        obj.innerHTML += $ret;
+        if(scrolldown)
+          obj.scrollTop = obj.scrollHeight;
       });
     }
     get_posts();
