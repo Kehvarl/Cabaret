@@ -6,12 +6,21 @@ class Room implements JsonSerializable
     public $name;
     public $description;
     public $posts;
+    public $lastid;
 
     public function __construct($name, $description)
     {
         $this->name = $name;
         $this->description = $description;
+        $this->lastid = 0;
         $this->posts = [];
+    }
+
+    public function addpost($post)
+    {
+        $post->id = $this->lastid;
+        $this->lastid++;
+        $this->posts[] = $post;
     }
 
     public function render()
