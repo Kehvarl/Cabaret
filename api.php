@@ -5,7 +5,7 @@ require_once ("room.php");
 session_start();
 
 if (!isset($_SESSION['room'])) {
-    $_SESSION['room'] = new Room("Main", "The Mane plane");
+    $_SESSION['room'] = new Room("Main", "The Main plane");
     $_SESSION['room']->posts[] = new Post("Kehvarl", "First Post.", "#c0c0c0");
     $_SESSION['room']->posts[] = new Post("Kehvarl", "Second Post.", "#000080");
     $_SESSION['room']->posts[] = new Post("Kehvarl", "Third Post.", "#000000");
