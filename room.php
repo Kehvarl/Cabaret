@@ -1,5 +1,6 @@
 <?php
 require_once ("post.php");
+require_once ("login.php");
 
 class Room implements JsonSerializable
 {
@@ -7,6 +8,7 @@ class Room implements JsonSerializable
     public $description;
     public $posts;
     public $lastid;
+    public $logins;
 
     public function __construct($name, $description)
     {
@@ -14,6 +16,21 @@ class Room implements JsonSerializable
         $this->description = $description;
         $this->lastid = 0;
         $this->posts = [];
+        $this->logins = [];
+    }
+
+    public function login($user, $name, $description="")
+    {
+        $newlogin = new Login($user, $name, $description);
+        foreach($this->logins as $login)
+        {
+            if($newlogin->compare($login))
+            {
+                return false;
+            }
+        }
+        $this->logins[] = $login;
+        return true;
     }
 
     public function addpost($post)
