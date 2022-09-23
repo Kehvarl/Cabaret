@@ -5,6 +5,7 @@ class Login implements JsonSerializable
     public $name;
     public $description;
     public $user;
+    public $unposted;
     public $update;
 
     public function __construct($user, $name, $description="")
