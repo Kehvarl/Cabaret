@@ -1,4 +1,17 @@
 <?php
+    try
+    {
+        $conn = new PDO('mysql:host=localhost;dbname=cabaret',$_SERVER['MYSQL_USER'],$_SERVER['MYSQL_PASSWORD']);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        echo "Connected\n";
+    }
+    catch (PDOException  $e)
+    {
+        die("Unable to connect: " . $e->getMessage());
+    }
+    $conn = null;
+
+
     require_once ("room.php");
     echo "<!doctype html><html class='no-js' lang=''><head><title>Cabaret</title>";
     echo "<link rel='stylesheet' href='style/style.css' type='text/css'/>";
