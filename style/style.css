@@ -13,6 +13,8 @@ body{
     height: 20em;
     width: 100%;
     overflow-y: scroll;
+    padding-bottom: .5em;
+    margin-bottom: .5em;
 }
 
 .post{
