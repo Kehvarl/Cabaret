@@ -6,18 +6,25 @@ class Login implements JsonSerializable
     public $name;
     public $description;
     public $user;
+    public $room;
     public $unposted;
     public $update;
 
-    public function __construct($user, $name, $description="")
+    public static function exists($user, $name, $room) : bool
+    {
+        return false;
+    }
+
+    public function __construct($user, $name, $description, $room)
     {
         $this->name = $name;
         $this->description = $description;
         $this->user = $user;
+        $this->room = $room;
         $this->update = date("Y-m-d h:i:sa");
     }
 
-    public function compare($other)
+    public function compare($other): bool
     {
         return ($this->name == $other->name &&
             $this->user == $other->user);
