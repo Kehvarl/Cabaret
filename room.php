@@ -4,14 +4,19 @@ require_once ("login.php");
 
 class Room implements JsonSerializable
 {
+    public $id;
     public $name;
     public $description;
     public $posts;
     public $lastid;
     public $logins;
 
+    /**
+     * @throws Exception
+     */
     public function __construct($name, $description)
     {
+        $this->id = random_int(1000,10000);
         $this->name = $name;
         $this->description = $description;
         $this->lastid = 0;
@@ -19,9 +24,9 @@ class Room implements JsonSerializable
         $this->logins = [];
     }
 
-    public function login($user, $name, $description="")
+    public function login($user, $name, $description, $room): bool
     {
-        $newlogin = new Login($user, $name, $description);
+        $newlogin = new Login($user, $name, $description, $room);
         foreach($this->logins as $login)
         {
             if($newlogin->compare($login))
@@ -29,7 +34,7 @@ class Room implements JsonSerializable
                 return false;
             }
         }
-        $this->logins[] = $login;
+        $this->logins[] = $newlogin;
         return true;
     }
 
@@ -40,7 +45,7 @@ class Room implements JsonSerializable
         $this->posts[] = $post;
     }
 
-    public function render()
+    public function render(): string
     {
         $ret = "<div class='header'>$this->name</div>\n";
         $ret .= "<div class='posts'>\n";
