@@ -27,13 +27,14 @@ class Login implements JsonSerializable
     public function compare($other): bool
     {
         return ($this->name == $other->name &&
+            $this->room->id == $other->room->id &&
             $this->user == $other->user);
     }
 
     /**
      * @inheritDoc
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         return [
             'name'=>        $this->name,
