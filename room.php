@@ -58,7 +58,10 @@ class Room implements JsonSerializable
         return $ret;
     }
 
-    public function jsonSerialize()
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize(): array
     {
         return [
             'name'=> $this->name,

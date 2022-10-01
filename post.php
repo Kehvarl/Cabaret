@@ -18,7 +18,7 @@ class Post implements JsonSerializable
         $this->date_time = date("Y-m-d h:i:sa");
     }
 
-    public function render()
+    public function render(): string
     {
         $ret = "<div class='post' style='color: $this->color;";
         if ($this->font)
@@ -30,7 +30,10 @@ class Post implements JsonSerializable
         return $ret;
     }
 
-    public function jsonSerialize()
+    /**
+     * @inheritDoc
+     */
+    public function jsonSerialize(): array
     {
         return [
             'post_id' => $this->id,
