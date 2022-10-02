@@ -30,8 +30,10 @@
     }
     $r = new Room("Main", "Room");
     $l = new Login($user, "Kehv", "A Dragon", $r);
+    $l2 = new Login($user, "Illyrin", "A Dragon", $r);
 
     $r->addpost(new Post($l->name, "Test", "#c0c0c0"));
+    $r->addpost(new Post($l2->name, "Test2", "#00c0c0"));
 
     echo "<!doctype html><html class='no-js' lang=''><head><title>Cabaret</title>";
     echo "<link rel='stylesheet' href='style/style.css' type='text/css'/>";

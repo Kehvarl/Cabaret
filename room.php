@@ -47,7 +47,7 @@ class Room implements JsonSerializable
 
     public function render(): string
     {
-        $ret = "<div class='header'>$this->name</div>\n";
+        $ret = "<div class='header'>$this->name</div><br>\n";
         $ret .= "<div class='posts'>\n";
         foreach ($this->posts as $p)
         {
