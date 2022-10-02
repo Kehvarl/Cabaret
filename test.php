@@ -1,4 +1,6 @@
+
 <?php
+/*
     try
     {
         $conn = new PDO('mysql:host=localhost;dbname=cabaret',$_SERVER['MYSQL_USER'],$_SERVER['MYSQL_PASSWORD']);
@@ -10,8 +12,23 @@
         die("Unable to connect: " . $e->getMessage());
     }
     $conn = null;
+*/
+
+    require_once ('user.php');
+    try
+    {
+        $user = User::create('Kehvarl', 'kehvarl@kehvarl.com', 'PAssword');
+        print_r($user->jsonSerialize());
+        //print_r($user->password_hash);
+    }
+    catch (Exception $e)
+    {
+        print_r($e);
+    }
 
 
+
+/*
     require_once ("room.php");
     echo "<!doctype html><html class='no-js' lang=''><head><title>Cabaret</title>";
     echo "<link rel='stylesheet' href='style/style.css' type='text/css'/>";
@@ -26,3 +43,4 @@
     echo $r->render();
 
     echo "</body></html>";
+*/
