@@ -39,3 +39,15 @@
   * Date   : Date
   * Func   : Add
  
+
+What object does the SQL interation?
+Does each object do its own?
+SQL Qeuries needed
+  Available Rooms
+  Logins in Room
+  Posts in Room
+  Logins for User
+  Create Room
+  Create User
+  Create Login
+  Create Post
