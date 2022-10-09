@@ -42,27 +42,27 @@
 
 What object does the SQL interation?
 Does each object do its own?
-SQL Qeuries needed
-  Available Rooms
-    Rooms -> List
-  Logins in Room
-    Rooms -> List_Logins
-    Logins -> List(Room)
-  Posts in Room
-    Room -> List_Posts
-    Post -> List(Room)
-  Logins for User
-    User -> List_Logins
-    Logins -> List_For(User)
-  Create Room
-    Room -> Create
-  Create User
-    User -> Create
-  Create Login
-    Login -> Create
-    Room -> Create_Login
-    User -> Create_Login(Room)
-  Create Post
-    Post -> Create
-    Room -> Create_Post(Login)
-    Login -> Create_Post
+* SQL Qeuries needed
+  * Available Rooms
+    * Rooms -> List
+  * Logins in Room
+    * Rooms -> List_Logins
+    * Logins -> List(Room)
+  * Posts in Room
+    * Room -> List_Posts
+    * Post -> List(Room)
+  * Logins for User
+    * User -> List_Logins
+    * Logins -> List_For(User)
+  * Create Room
+    * Room -> Create
+  * Create User
+    * User -> Create
+  * Create Login
+    * Login -> Create
+    * Room -> Create_Login
+    * User -> Create_Login(Room)
+  * Create Post
+    * Post -> Create
+    * Room -> Create_Post(Login)
+    * Login -> Create_Post
