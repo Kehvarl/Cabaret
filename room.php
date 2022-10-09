@@ -24,6 +24,14 @@ class Room implements JsonSerializable
         $this->logins = [];
     }
 
+    /**
+     * @throws Exception
+     */
+    public static function list($user): array
+    {
+        return [];
+    }
+
     public function login($user, $name, $description, $room): bool
     {
         $newlogin = new Login($user, $name, $description, $room);
