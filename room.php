@@ -29,7 +29,7 @@ class Room implements JsonSerializable
      */
     public static function list($user): array
     {
-        return [];
+        return [new Room("Main", "The Main plane")];
     }
 
     public function login($user, $name, $description, $room): bool
