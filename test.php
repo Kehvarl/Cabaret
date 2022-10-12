@@ -29,7 +29,14 @@
     {
         print_r($e);
     }
-    $r = new Room("Main", "Room");
+    try
+    {
+        $r = Room::list($user)[0];
+    }
+    catch (Exception $e)
+    {
+        $r = new Room("Main", "Room");
+    }
     $l = new Login($user, "Kehv", "A Dragon", $r);
     $l2 = new Login($user, "Illyrin", "A Dragon", $r);
 
