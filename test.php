@@ -35,7 +35,8 @@
     }
     catch (Exception $e)
     {
-        $r = new Room("Main", "Room");
+        die("No Room");
+        //$r = new Room("Main", "Room");
     }
     $l = new Login($user, "Kehv", "A Dragon", $r);
     $l2 = new Login($user, "Illyrin", "A Dragon", $r);
