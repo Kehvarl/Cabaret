@@ -30,7 +30,28 @@ class user implements JsonSerializable
 
     public static function check_password($username, $password): bool
     {
-        return password_verify($password, password_hash("password", PASSWORD_BCRYPT));
+        return password_verify($password, password_hash("password", PASSWORD_DEFAULT));
+    }
+
+    /**
+     * @throws Exception
+     */
+    public static function login($username, $password): User
+    {
+        /*
+        try
+        {
+            $conn = new PDO('mysql:host=localhost;dbname=cabaret',$_SERVER['MYSQL_USER'],$_SERVER['MYSQL_PASSWORD']);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            echo "Connected\n";
+        }
+        catch (PDOException  $e)
+        {
+            die("Unable to connect: " . $e->getMessage());
+        }
+        $conn = null;
+        */
+        return new User($username, "", password_hash($password, PASSWORD_DEFAULT));
     }
 
     /**
