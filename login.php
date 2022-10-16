@@ -1,14 +1,17 @@
 <?php
+
+use JetBrains\PhpStorm\ArrayShape;
+
 require_once ('user.php');
 
 class Login implements JsonSerializable
 {
-    public $name;
-    public $description;
-    public $user;
-    public $room;
-    public $unposted;
-    public $update;
+    public string $name;
+    public string $description;
+    public User $user;
+    public Room $room;
+    public string $unposted;
+    public string $update;
 
     public static function exists($user, $name, $room) : bool
     {
@@ -34,7 +37,7 @@ class Login implements JsonSerializable
     /**
      * @inheritDoc
      */
-    public function jsonSerialize(): array
+    #[ArrayShape(['name' => "", 'description' => "", 'update' => "string"])] public function jsonSerialize(): array
     {
         return [
             'name'=>        $this->name,
