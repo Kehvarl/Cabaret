@@ -22,6 +22,7 @@
     {
         //$user = User::create('Kehvarl', 'kehvarl@kehvarl.com', 'PAssword');
         $user = User::login('Kehvarl', '');
+
         //print_r($user->jsonSerialize());
         //print_r($user->password_hash);
         //print(User::check_password('Kehvarl', 'password'));
