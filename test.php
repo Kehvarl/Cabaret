@@ -21,7 +21,7 @@
     try
     {
         //$user = User::create('Kehvarl', 'kehvarl@kehvarl.com', 'PAssword');
-        $user = User::login('Kehvarl', '');
+        $user = User::login('keHVaRL', '');
 
         //print_r($user->jsonSerialize());
         //print_r($user->password_hash);

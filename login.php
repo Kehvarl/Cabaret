@@ -37,7 +37,7 @@ class Login implements JsonSerializable
     /**
      * @inheritDoc
      */
-    #[ArrayShape(['name' => "", 'description' => "", 'update' => "string"])] public function jsonSerialize(): array
+    public function jsonSerialize(): array
     {
         return [
             'name'=>        $this->name,
