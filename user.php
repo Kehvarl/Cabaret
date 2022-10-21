@@ -44,8 +44,9 @@ class user implements JsonSerializable
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $u = $conn->prepare('SELECT * from users WHERE Name = :name');
             $u->execute(['name'=>$username]);
-            print_r($u->fetchAll()[0]['name']);
-
+            $l = $u->fetchAll()[0];
+            print_r($l);
+            print(password_verify($password, $l['password_hash'])?"OK": "Bad Password");
         }
         catch (PDOException  $e)
         {
@@ -57,6 +58,29 @@ class user implements JsonSerializable
 
         return new User($username, "", password_hash($password, PASSWORD_DEFAULT));
     }
+
+    /**
+     * @throws Exception
+     */
+    public static function set_pass($username, $password): bool
+    {
+        try
+        {
+            $conn = new PDO('mysql:host=localhost;dbname=cabaret',$_SERVER['MYSQL_USER'],$_SERVER['MYSQL_PASSWORD']);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $u = $conn->prepare('UPDATE users SET password_hash=:password_hash  WHERE name=:name');
+            $u->execute(['password_hash'=>password_hash($password, PASSWORD_DEFAULT),
+                        'name'=>$username]);
+        }
+        catch (PDOException  $e)
+        {
+            die("Unable to connect: " . $e->getMessage());
+        }
+        $conn = null;
+
+        return  true;
+    }
+
 
     /**
      * @throws Exception
