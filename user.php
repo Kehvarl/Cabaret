@@ -10,12 +10,12 @@ class user implements JsonSerializable
     /**
      * @throws Exception
      */
-    public function __construct($username, $email, $password_hash)
+    public function __construct($id, $username, $email, $password_hash)
     {
         $this->name = $username;
         $this->email = $email;
         $this->password_hash = $password_hash;
-        $this->id = random_int(1000,10000);
+        $this->id = $id;
     }
 
     public static function user_exists($username): bool
@@ -44,8 +44,10 @@ class user implements JsonSerializable
             $u = $conn->prepare('SELECT * from users WHERE Name = :name');
             $u->execute(['name' => $username]);
             $l = $u->fetchAll()[0];
-            print(password_verify($password, $l['password_hash']) ? "OK" : "Bad Password");
-            $ret = new User($l['name'], $l['email'], $l['password_hash']);
+            if (password_verify($password, $l['password_hash']))
+                $ret = new User($l['id'],$l['name'], $l['email'], $l['password_hash']);
+            else
+                $ret = null;
         } catch (PDOException  $e) {
             die("Unable to connect: " . $e->getMessage());
         }
@@ -111,5 +113,10 @@ class user implements JsonSerializable
             'name'  => $this->name,
             'email' => $this->email
         ];
+    }
+
+    public function __toString(): string
+    {
+        return implode(',', [$this->id, $this->name, $this->email]);
     }
 }
