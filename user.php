@@ -38,25 +38,23 @@ class user implements JsonSerializable
      */
     public static function login($username, $password): User
     {
-        try
-        {
-            $conn = new PDO('mysql:host=localhost;dbname=cabaret',$_SERVER['MYSQL_USER'],$_SERVER['MYSQL_PASSWORD']);
+        try {
+            $conn = new PDO('mysql:host=localhost;dbname=cabaret', $_SERVER['MYSQL_USER'], $_SERVER['MYSQL_PASSWORD']);
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $u = $conn->prepare('SELECT * from users WHERE Name = :name');
-            $u->execute(['name'=>$username]);
+            $u->execute(['name' => $username]);
             $l = $u->fetchAll()[0];
-            print_r($l);
-            print(password_verify($password, $l['password_hash'])?"OK": "Bad Password");
-        }
-        catch (PDOException  $e)
-        {
+            print(password_verify($password, $l['password_hash']) ? "OK" : "Bad Password");
+            $ret = new User($l['name'], $l['email'], $l['password_hash']);
+        } catch (PDOException  $e) {
             die("Unable to connect: " . $e->getMessage());
         }
-        $conn = null;
+        finally
+        {
+            $conn = null;
+        }
 
-
-
-        return new User($username, "", password_hash($password, PASSWORD_DEFAULT));
+        return $ret;
     }
 
     /**
@@ -81,23 +79,27 @@ class user implements JsonSerializable
         return  true;
     }
 
-
     /**
      * @throws Exception
      */
     public static function create($username, $email, $password): user
     {
-        $password_hash = password_hash($password, PASSWORD_BCRYPT);
-        if (user::user_exists($username))
-        {
-            throw new Exception("User Exists");
+        if (User::user_exists($username))
+            throw new Exception("User Already Exists");
+        else {
+            try {
+                $conn = new PDO('mysql:host=localhost;dbname=cabaret', $_SERVER['MYSQL_USER'], $_SERVER['MYSQL_PASSWORD']);
+                $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $u = $conn->prepare('INSERT INTO  users (name, email, password_hash, join_date) VALUES (:name, :email, :password_hash, CURDATE())');
+                $u->execute(['password_hash' => password_hash($password, PASSWORD_DEFAULT),
+                    'name' => $username,
+                    'email' => $email]);
+            } catch (PDOException  $e) {
+                die("Unable to connect: " . $e->getMessage());
+            }
+            $conn = null;
         }
-        elseif (user::email_exists($email))
-        {
-            throw new Exception("Email Exists");
-        }
-
-        return new user($username, $email, $password_hash);
+        return User::login($username, $password);
     }
 
     /**

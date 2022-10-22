@@ -25,7 +25,7 @@
         $user = User::login('keHVaRL', 'TestPAss');
 
         //print_r($user->jsonSerialize());
-        //print_r($user->password_hash);
+        print_r($user);
         //print(User::check_password('Kehvarl', 'password'));
     }
     catch (Exception $e)
