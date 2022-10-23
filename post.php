@@ -29,7 +29,8 @@ class Post implements JsonSerializable
         $ret .= "'><span class='name'>$this->display_name</span> ";
         $ret .= "<span class='message'>$this->message</span> ";
         $ret .= "<span class='time'>$this->date_time</span>";
-        $ret .= "&nbsp;&nbsp;<span class='user'>$this->user</span></div>\n";
+        $ret .= "&nbsp;&nbsp;<span class='user'>$this->user</span>";
+        $ret .= "</div>\n";
 
         return $ret;
     }
