@@ -5,16 +5,18 @@ class user implements JsonSerializable
     public $id;
     public $name;
     public $email;
+    public $access_level;
     public $password_hash;
 
     /**
      * @throws Exception
      */
-    public function __construct($id, $username, $email, $password_hash)
+    public function __construct($id, $username, $email, $access_level, $password_hash)
     {
         $this->name = $username;
         $this->email = $email;
         $this->password_hash = $password_hash;
+        $this->access_level = $access_level;
         $this->id = $id;
     }
 
@@ -45,7 +47,7 @@ class user implements JsonSerializable
             $u->execute(['name' => $username]);
             $l = $u->fetchAll()[0];
             if (password_verify($password, $l['password_hash']))
-                $ret = new User($l['id'],$l['name'], $l['email'], $l['password_hash']);
+                $ret = new User($l['id'],$l['name'], $l['email'], $l['access_level'], $l['password_hash']);
             else
                 $ret = null;
         } catch (PDOException  $e) {
@@ -117,6 +119,6 @@ class user implements JsonSerializable
 
     public function __toString(): string
     {
-        return implode(',', [$this->id, $this->name, $this->email]);
+        return implode(',', [$this->id, $this->access_level, $this->name, $this->email]);
     }
 }
