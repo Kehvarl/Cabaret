@@ -2,11 +2,11 @@
 
 class user implements JsonSerializable
 {
-    public $id;
-    public $name;
-    public $email;
-    public $access_level;
-    public $password_hash;
+    public int $id;
+    public string $name;
+    public string $email;
+    public int $access_level;
+    public string $password_hash;
 
     /**
      * @throws Exception
@@ -22,17 +22,14 @@ class user implements JsonSerializable
 
     public static function user_exists($username): bool
     {
+        echo ($username);
         return false;
     }
 
     public static function email_exists($email): bool
     {
+        echo ($email);
         return false;
-    }
-
-    public static function check_password($username, $password): bool
-    {
-        return password_verify($password, password_hash("password", PASSWORD_DEFAULT));
     }
 
     /**
