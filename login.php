@@ -1,7 +1,5 @@
 <?php
 
-use JetBrains\PhpStorm\ArrayShape;
-
 require_once ('user.php');
 
 class Login implements JsonSerializable
