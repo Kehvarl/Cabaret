@@ -42,3 +42,4 @@ echo "<link rel='stylesheet' href='style/style.css' type='text/css'/>";
 echo "</head><body>\n";
 echo $r->render();
 echo "</body></html>";
+
