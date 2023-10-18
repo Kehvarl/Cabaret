@@ -4,12 +4,12 @@ require_once ("login.php");
 
 class Room implements JsonSerializable
 {
-    public $id;
-    public $name;
-    public $description;
-    public $posts;
-    public $lastid;
-    public $logins;
+    public int $id;
+    public string $name;
+    public string $description;
+    public array $posts;
+    public int $lastid;
+    public array $logins;
 
     /**
      * @throws Exception
