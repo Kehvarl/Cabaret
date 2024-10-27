@@ -1,4 +1,23 @@
 # Cabaret
+* What is Cabaret
+* What is a suitable MVP
+* What additional features are needed to take us from MVP to Finished?
+
+Cabaret is a simple web chatroom platform for roleplay communities
+
+Our intended featureset includes:
+* Registered Users
+  * Do we require an email?
+  * What history do we track
+    * Most recent login
+    * Most recent IP
+    * Login history with IP?
+  * User-Room Nickname
+    * Do we track history of this as well?
+* Multiple Rooms
+  * Public and Private Rooms
+  * Masquerade Roleplay Rooms - Hide Username and show only room-specific nickname
+
 
 ## Backend
 1) Users
