@@ -19,6 +19,43 @@ Our intended featureset includes:
   * Masquerade Roleplay Rooms - Hide Username and show only room-specific nickname
 
 
+## Data Model Revisited
+* User_Types
+  * ID
+  * Label
+  * User_Level
+
+* User
+  * ID
+  * Type
+  * Nickname
+  * Password_Hash
+
+* User_Login
+  * ID
+  * Login_Timestamp
+
+* Room
+  * ID
+  * Title
+  * Short_Description
+  * Long_Description
+
+* Room_Users
+  * Room_ID
+  * User_ID
+  * Display_Name
+  * Last_Activity_Timestamp
+
+* Room_Messages
+  * Room_ID
+  * User_ID
+  * Display_Name
+  * Display_Color
+  * Font
+  * Timestamp
+
+
 ## Backend
 1) Users
    1) Data Model
