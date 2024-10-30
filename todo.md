@@ -55,6 +55,13 @@ Our intended featureset includes:
   * Font
   * Timestamp
 
+* Create_User Name Password
+* Login Name Password
+* Logout User
+* Create_Room Name
+* Join_Room RoomID UserID NickName
+* Post RoomID UserID NickName Message Color Font
+
 
 ## Backend
 1) Users
