@@ -62,6 +62,16 @@ Our intended featureset includes:
 * Join_Room RoomID UserID NickName
 * Post RoomID UserID NickName Message Color Font
 
+* Login Process
+  * Get username
+  * Get password (hash client-side?  Cant, need salt)
+  * Send to API
+  * Compare user+hash to DB
+  * return {ok, auth-token} or {error, error}
+    * User not found
+    * Password mismatch
+
+
 
 ## Backend
 1) Users
