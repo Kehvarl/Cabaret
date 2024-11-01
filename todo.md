@@ -71,7 +71,10 @@ Our intended featureset includes:
     * User not found
     * Password mismatch
 
-
+Once logged in, allow user to join some rooms
+One room or multiple in tabs?
+Nickname per room
+Regiser nicknames to user?
 
 ## Backend
 1) Users
