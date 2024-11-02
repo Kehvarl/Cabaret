@@ -73,8 +73,9 @@ Our intended featureset includes:
 
 Once logged in, allow user to join some rooms
 One room or multiple in tabs?
-Nickname per room
-Regiser nicknames to user?
+Nickname per room tied to user while in use
+  Reserve for an additional length of time
+
 
 ## Backend
 1) Users
