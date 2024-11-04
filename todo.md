@@ -61,6 +61,7 @@ Our intended featureset includes:
 * Create_Room Name
 * Join_Room RoomID UserID NickName
 * Post RoomID UserID NickName Message Color Font
+  * command processor?
 
 * Login Process
   * Get username
@@ -75,6 +76,4 @@ Once logged in, allow user to join some rooms
 One room or multiple in tabs?
 Nickname per room tied to user while in use
   Reserve for an additional length of time
-
-
 
