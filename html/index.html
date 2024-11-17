@@ -6,20 +6,21 @@
   <meta charset="utf-8">
   <title>Cabaret</title>
   <meta name="description" content="Cabaret Chat Project">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-Clacks-Overhead" content="GNU Terry Pratchett" />
 
   <meta property="og:title" content="Cabaret">
   <meta property="og:type" content="chat platform">
   <meta property="og:url" content="">
   <meta property="og:image" content="">
 
-  <link type="text/plain" rel="author" href="/humans.txt" />
+  <link type="text/plain" rel="author" href="/html/humans.txts.txt" />
 
   <meta name="theme-color" content="#fafafa">
 
-  <link rel='stylesheet' href='style/style.css' type='text/css'/>
+  <link rel='stylesheet' href='../style/style.css' type='text/css'/>
 
-  <script language="JavaScript" src="chat.js"></script>
+  <script language="JavaScript" src="../script/chat.js"></script>
 </head>
 
 <body>
@@ -31,8 +32,8 @@
   </div>
 
   <div style="height:5em; width: 100%;">
-    <input type="color" id="Color" name="Color" value="#00ccdd"/>
-    <select id="Font" style="height:32px; padding:4px; margin-top: -2;">
+    <input type="color" id="selectColor" name="Color" value="#00ccdd"/>
+    <select id="selectFont" onchange="updateFont" style="height:32px; padding:4px; margin-top: -2;">
       <optgroup>
         <option>Default</option>
       </optgroup>
