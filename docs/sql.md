@@ -1,18 +1,60 @@
 
--user_types
+- user_types
   CREATE TABLE User_Types(
-    id INT NOT NULL,
-    label VARCHAR(150),
+    id INT NOT NULL AUTO_INCREMENT,
+    label VARCHAR(128),
     PRIMARY KEY(id)
   );
 
--users
+- users
   CREATE TABLE users(
-    id INT NOT NULL,
+    id INT NOT NULL AUTO_INCREMENT,
     type_id INT NOT NULL,
-    Display VARCHAR(255),
+    name VARCHAR(256),
+    password_hash CHAR(128),
     PRIMARY KEY(id),
     FOREIGN KEY (type_id) REFERENCES user_types(id)
   );
 
   INSERT INTO  users (name, email, password_hash, join_date) VALUES (:name, :email, :password_hash, CURDATE())
+
+- user_logins
+   CREATE_TABLE user_login(
+
+   )
+
+- rooms
+    CREATE_TABLE rooms(
+      id INT NOT NULL AUTO_INCREMENT,
+      title VARCHAR(128) NOT NULL,
+      short_desc VARCHAR(256) NOT NULL,
+      long_desc TEXT,
+      PRIMARY KEY(id)
+    )
+
+- room_users
+    CREATE_TABLE room_users(
+      id INT NOT NULL AUTO_INCREMENT,
+      room_id INT NOT NULL,
+      user_id INT NOT NULL,
+      display_name VARCHAR(128),
+      last_activity DATETIME,
+      PRIMARY KEY(id),
+      FOREIGN KEY(room_id) REFERENCES rooms(id),
+      FOREIGN KEY(user_id) REFERENCES users(id)
+    )
+
+- room_messages
+    CREATE TABLE room_messages(
+      id INT NOT NULL AUTO_INCREMENT,
+      room_id INT NOT NULL,
+      room_user_id INT NOT NULL,
+      display_name VARCHAR(128),
+      display_color VARCHAR(64),
+      display_font VARCHAR(64),
+      message TEXT,
+      timestamp DATETIME,
+      PRIMARY_KEY(id),
+      FOREIGN KEY(room_user_id) REFERENCES room_use(id),
+      FOREIGN KEY(room_id) REFERENCES rooms(id)
+    )
