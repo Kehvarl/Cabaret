@@ -3,8 +3,16 @@ user_types:
   - CREATE TABLE User_Types(
       id INT NOT NULL AUTO_INCREMENT,
       label VARCHAR(128),
+      validated BOOL NOT NULL DEFAULT 0,
+      can_masquerade BOOL NOT NULL DEFAULT 0,
+      create_private BOOL NOT NULL DEFAULT 0,
+      manage_rooms BOOL NOT NULL DEFAULT 0,
+      manage_users BOOL NOT NULL DEFAULT 0,
+      administrator BOOL NOT NULL DEFAULT 0,
       PRIMARY KEY(id)
     );
+
+  - INSERT INTO user_types (label) VALUES (:label)
 
 users:
   - CREATE TABLE users(
@@ -12,11 +20,12 @@ users:
       type_id INT NOT NULL,
       name VARCHAR(256),
       password_hash CHAR(128),
+      join_date DATE,
       PRIMARY KEY(id),
       FOREIGN KEY (type_id) REFERENCES user_types(id)
     );
 
-  - INSERT INTO  users (name, email, password_hash, join_date) VALUES (:name, :email, :password_hash, CURDATE())
+  - INSERT INTO  users (type_id, name, password_hash, join_date) VALUES (type_id, :name, :password_hash, CURDATE())
 
 user_logins:
   - CREATE_TABLE user_login();
