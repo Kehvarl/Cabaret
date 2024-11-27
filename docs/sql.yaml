@@ -12,20 +12,26 @@ user_types:
       PRIMARY KEY(id)
     );
 
-  - INSERT INTO user_types (label) VALUES (:label)
+  - add_type: INSERT INTO user_types (label) VALUES (:label)
+  - get_types: SELECT id, label FROM user_types;
+  - get_perms: SELECT validated, can_masquerade, create_private, manage_rooms, manage_users, administrator
+               FROM user_types WHERE (id == :id);
 
 users:
   - CREATE TABLE users(
       id INT NOT NULL AUTO_INCREMENT,
       type_id INT NOT NULL,
-      name VARCHAR(256),
-      password_hash CHAR(128),
-      join_date DATE,
+      name VARCHAR(256) NOT NULL,
+      password_hash CHAR(128) NOT NULL,
+      join_date DATE NOT NULL,
       PRIMARY KEY(id),
       FOREIGN KEY (type_id) REFERENCES user_types(id)
     );
 
-  - INSERT INTO  users (type_id, name, password_hash, join_date) VALUES (type_id, :name, :password_hash, CURDATE())
+  - add_user: INSERT INTO  users (type_id, name, password_hash, join_date) VALUES (type_id, :name, :password_hash, CURDATE())
+  - get_pass: SELECT id, password_hash FROM users WHERE (name == :name);
+  - get_user: SELECT id, type_id, name from users WHERE (id == :id);
+
 
 user_logins:
   - CREATE_TABLE user_login();
