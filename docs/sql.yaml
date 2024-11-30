@@ -71,3 +71,8 @@ room_messages:
       FOREIGN KEY(room_user_id) REFERENCES room_use(id),
       FOREIGN KEY(room_id) REFERENCES rooms(id)
     );
+
+  - get_messages: SELECT (display_name, display_color, display_font, message, timestamp) FROM room_messages WHERE room_id = :room_id ORDER BY id DESC LIMIT 100
+  - get_messages_page:  SELECT (display_name, display_color, display_font, message, timestamp) FROM room_messages WHERE room_id = :room_id AND id < :start_id ORDER BY id DESC LIMIT 100
+  - add_message: INSERT INTO room_messages(room_id, room_user_id, display_name, display_color, display_font, message, timestamp)
+                       VALUES (:room_id, :room_user_id, :display_name, :display_color, :display_font, :message, CURDATETIME());
